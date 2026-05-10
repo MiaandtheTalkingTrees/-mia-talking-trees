@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grown-Up Guide – Mia and the Talking Trees</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap');
+:root {
+  --green-deep: #2D5A27; --green-mid: #4A7C42; --green-light: #EAF4E6;
+  --green-pale: #F5FAF4; --gold: #C8922A; --gold-light: #FDF3E0;
+  --brown: #6B4C2A; --brown-light: #F7F0E8; --text: #2C2C2C;
+  --text-light: #5C5C5C; --white: #FFFFFF;
+  --shadow: 0 4px 20px rgba(45,90,39,0.10);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Nunito', sans-serif; color: var(--text); background: var(--green-pale); line-height: 1.6; }
+nav { background: var(--green-deep); position: sticky; top: 0; z-index: 100; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 56px; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.nav-brand { display: flex; align-items: center; gap: 10px; color: white; font-weight: 800; font-size: 15px; text-decoration: none; }
+.nav-links { display: flex; gap: 6px; list-style: none; flex-wrap: wrap; }
+.nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 20px; transition: background 0.15s; }
+.nav-links a:hover { background: rgba(255,255,255,0.15); color: white; }
+.hero { background: linear-gradient(135deg, var(--green-deep) 0%, #3D7A35 60%, #5A9E50 100%); color: white; padding: 64px 24px 80px; text-align: center; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+.hero-emoji { font-size: 52px; margin-bottom: 16px; display: block; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 44px); line-height: 1.15; margin-bottom: 12px; }
+.hero h1 em { font-style: italic; color: #A8E09A; }
+.hero .tagline { font-size: clamp(14px, 2vw, 17px); opacity: 0.88; max-width: 580px; margin: 0 auto 28px; line-height: 1.65; }
+.hero-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 6px 16px; font-size: 13px; font-weight: 600; }
+.wave { display: block; margin-top: -2px; background: var(--green-pale); }
+.main { max-width: 900px; margin: 0 auto; padding: 0 20px 80px; }
+.section { margin-top: 60px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.section-icon { width: 44px; height: 44px; background: var(--green-deep); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: var(--shadow); }
+.section-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(20px, 3vw, 26px); color: var(--green-deep); }
+.section-header p { font-size: 14px; color: var(--text-light); margin-top: 2px; }
+.intro-card { background: white; border-radius: 16px; padding: 28px 32px; box-shadow: var(--shadow); border-left: 5px solid var(--green-deep); margin-top: 32px; }
+.intro-card p { font-size: 16px; line-height: 1.75; color: var(--text); }
+.intro-card p + p { margin-top: 12px; }
+.intro-card strong { color: var(--green-deep); }
+.science-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.science-card { background: white; border-radius: 14px; padding: 22px; box-shadow: var(--shadow); border-top: 4px solid var(--green-mid); transition: transform 0.2s; }
+.science-card:hover { transform: translateY(-3px); }
+.science-card .card-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+.science-card h3 { font-size: 15px; font-weight: 800; color: var(--green-deep); margin-bottom: 8px; }
+.science-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+.science-card .source { font-size: 11.5px; color: var(--green-mid); font-style: italic; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--green-light); }
+.signs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+@media (max-width: 560px) { .signs-grid { grid-template-columns: 1fr; } }
+.signs-card { background: white; border-radius: 14px; padding: 22px; box-shadow: var(--shadow); }
+.signs-card.concern { border-top: 4px solid #E07B54; }
+.signs-card.positive { border-top: 4px solid var(--green-mid); }
+.signs-card h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px; }
+.signs-card.concern h3 { color: #C0392B; }
+.signs-card.positive h3 { color: var(--green-deep); }
+.signs-card ul { list-style: none; }
+.signs-card ul li { font-size: 14px; color: var(--text); padding: 5px 0 5px 24px; position: relative; border-bottom: 1px solid var(--green-light); line-height: 1.45; }
+.signs-card ul li:last-child { border-bottom: none; }
+.signs-card.concern ul li::before { content: "⚠"; position: absolute; left: 0; font-size: 12px; top: 7px; }
+.signs-card.positive ul li::before { content: "✓"; position: absolute; left: 0; color: var(--green-mid); font-weight: 900; top: 5px; }
+.breathing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) { .breathing-grid { grid-template-columns: 1fr; } }
+.breathing-card { background: white; border-radius: 14px; padding: 22px; box-shadow: var(--shadow); border-top: 4px solid var(--gold); }
+.breathing-card h3 { font-size: 16px; font-weight: 800; color: var(--green-deep); margin-bottom: 4px; }
+.breathing-card .page-ref { font-size: 11px; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; display: block; }
+.breathing-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+.step-list { list-style: none; margin-top: 10px; }
+.step-list li { font-size: 13.5px; color: var(--text); padding: 5px 0 5px 28px; position: relative; border-bottom: 1px solid var(--green-light); line-height: 1.5; }
+.step-list li:last-child { border-bottom: none; }
+.step-list li .step-num { position: absolute; left: 0; width: 20px; height: 20px; background: var(--green-deep); color: white; border-radius: 50%; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; top: 6px; }
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.tip-card { background: var(--gold-light); border-radius: 14px; padding: 20px; border: 1px solid #E8D5A8; transition: transform 0.2s; }
+.tip-card:hover { transform: translateY(-2px); }
+.tip-card .tip-label { font-size: 12px; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+.tip-card p { font-size: 14px; color: var(--text); line-height: 1.6; }
+.convo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.convo-item { background: white; border-radius: 12px; padding: 16px 18px 16px 48px; box-shadow: 0 2px 10px rgba(45,90,39,0.08); position: relative; font-size: 14px; color: var(--text); line-height: 1.5; border-left: 3px solid var(--green-light); transition: border-color 0.2s; }
+.convo-item:hover { border-left-color: var(--green-mid); }
+.convo-item::before { content: "💬"; position: absolute; left: 16px; top: 15px; font-size: 18px; }
+.ref-table-wrap { background: white; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+.ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.ref-table th { background: var(--green-deep); color: white; padding: 12px 16px; text-align: left; font-weight: 700; font-size: 13px; }
+.ref-table td { padding: 11px 16px; border-bottom: 1px solid var(--green-light); color: var(--text); vertical-align: top; line-height: 1.5; }
+.ref-table tr:last-child td { border-bottom: none; }
+.ref-table tr:nth-child(even) td { background: var(--green-pale); }
+.ref-table td:first-child { font-weight: 700; color: var(--green-deep); white-space: nowrap; }
+@media (max-width: 680px) {
+  .ref-table thead { display: none; }
+  .ref-table tr { display: block; margin-bottom: 12px; border: 1px solid var(--green-light); border-radius: 10px; overflow: hidden; }
+  .ref-table td { display: block; border-bottom: 1px solid var(--green-light); }
+  .ref-table td:first-child { background: var(--green-light); }
+}
+.glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.glossary-card { background: white; border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); border-left: 4px solid var(--green-mid); }
+.glossary-card .word { font-size: 15px; font-weight: 800; color: var(--green-deep); margin-bottom: 4px; }
+.glossary-card .pronounce { font-size: 12px; color: var(--gold); font-style: italic; margin-bottom: 6px; }
+.glossary-card p { font-size: 13.5px; color: var(--text-light); line-height: 1.55; }
+.resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.resource-card { background: white; border-radius: 14px; padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px; transition: transform 0.2s; }
+.resource-card:hover { transform: translateY(-3px); }
+.resource-card .res-tag { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; padding: 3px 10px; border-radius: 20px; display: inline-block; width: fit-content; }
+.res-tag.book { background: #E8F4E8; color: var(--green-deep); }
+.res-tag.video { background: #FDE8E8; color: #C0392B; }
+.res-tag.activity { background: var(--gold-light); color: var(--gold); }
+.res-tag.research { background: #E8EEFE; color: #3456C8; }
+.resource-card h3 { font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.resource-card p { font-size: 13px; color: var(--text-light); line-height: 1.5; flex: 1; }
+.resource-card a { display: inline-block; margin-top: 4px; font-size: 13px; font-weight: 700; color: var(--green-deep); text-decoration: none; border-bottom: 1.5px solid var(--green-light); padding-bottom: 1px; transition: border-color 0.15s; }
+.resource-card a:hover { border-color: var(--green-deep); }
+footer { background: var(--green-deep); color: rgba(255,255,255,0.8); padding: 40px 24px; text-align: center; margin-top: 80px; }
+footer .footer-logo { font-size: 36px; margin-bottom: 12px; display: block; }
+footer h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: white; margin-bottom: 8px; }
+footer p { font-size: 13px; max-width: 520px; margin: 0 auto 20px; line-height: 1.7; }
+footer .refs { font-size: 12px; max-width: 700px; margin: 0 auto; opacity: 0.65; line-height: 1.8; }
+footer .refs em { font-style: italic; }
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">🌿 Mia & the Talking Trees</a>
+  <ul class="nav-links">
+    <li><a href="#science">Science</a></li>
+    <li><a href="#breathing">Breathing</a></li>
+    <li><a href="#tips">Home Tips</a></li>
+    <li><a href="#convos">Conversations</a></li>
+    <li><a href="#pages">Book Guide</a></li>
+    <li><a href="#glossary">Word List</a></li>
+    <li><a href="#resources">More</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <span class="hero-emoji">🌳</span>
+  <h1>Your child just discovered<br><em>the magic of the forest.</em></h1>
+  <p class="tagline">Here's the science behind <strong>Mia and the Talking Trees</strong> — plus breathing exercises, conversation starters, and ways to bring the forest home, no matter where you live.</p>
+  <div class="hero-badges">
+    <span class="badge">🔬 Real Science</span>
+    <span class="badge">🌿 Breathing Exercises</span>
+    <span class="badge">🏡 Home Tips</span>
+    <span class="badge">💬 Conversation Starters</span>
+    <span class="badge">📖 Word List</span>
+  </div>
+</div>
+
+<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none" height="40" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,40 C360,0 1080,0 1440,40 L1440,40 L0,40 Z" fill="#2D5A27"/>
+  <path d="M0,40 C360,10 1080,10 1440,40 L1440,40 L0,40 Z" fill="#F5FAF4"/>
+</svg>
+
+<div class="main">
+
+  <div class="intro-card fade-in">
+    <p>This activity book was created to help children ages 6–9 connect with nature, understand their emotions, and learn real science about forests. <strong>You don't need a forest in your backyard.</strong> A walk around the block, a patch of grass, a windowsill garden, or even 20 minutes at a local park can bring these pages to life.</p>
+    <p>Inside, your child explored the Wood Wide Web, the Mother Tree, two calming breathing exercises, children's rights, and what science says about nature and the brain. This page helps you understand the "why" — and keep the magic going at home.</p>
+  </div>
+
+  <!-- SCIENCE -->
+  <div class="section fade-in" id="science">
+    <div class="section-header">
+      <div class="section-icon">🔬</div>
+      <div>
+        <h2>What the Research Tells Us</h2>
+        <p>The real science behind what Mia discovers in the forest</p>
+      </div>
+    </div>
+    <div class="science-grid">
+      <div class="science-card">
+        <span class="card-icon">🧠</span>
+        <h3>Nature Calms the Nervous System</h3>
+        <p>Time outdoors lowers cortisol (the stress hormone), slows heart rate, and shifts children from high alert to calm readiness — exactly what happens to Mia when she sits under the Mother Tree. Even 20 minutes outside makes a measurable difference.</p>
+        <div class="source">Li et al., International Journal of Environmental Research and Public Health</div>
+      </div>
+      <div class="science-card">
+        <span class="card-icon">📚</span>
+        <h3>Attention and Focus Improve</h3>
+        <p>Natural environments restore the directed attention children need for reading, math, and learning. Children with ADHD show especially strong focus improvements after time in green settings — no medication required.</p>
+        <div class="source">Faber Taylor & Kuo, American Journal of Public Health</div>
+      </div>
+      <div class="science-card">
+        <span class="card-icon">😊</span>
+        <h3>Mood and Emotional Regulation</h3>
+        <p>Children who spend regular time in nature show lower anxiety, greater resilience, and higher self-esteem. Like Mia on her hard day — sitting under a tree doesn't fix the problem, but it helps the body find its way back to calm.</p>
+        <div class="source">Chawla, L., Journal of Planning Literature</div>
+      </div>
+      <div class="science-card">
+        <span class="card-icon">🌐</span>
+        <h3>The Wood Wide Web Is Real</h3>
+        <p>Everything in the book about the mycorrhizal network is real science. Trees genuinely share nutrients and communicate through underground fungal threads. This research was pioneered by forest ecologist Dr. Suzanne Simard — the real Ms. Rowan.</p>
+        <div class="source">Simard, S. (2021). Finding the Mother Tree. Knopf.</div>
+      </div>
+    </div>
+    <div class="signs-grid">
+      <div class="signs-card concern">
+        <h3>⚠ Signs of Nature Disconnection</h3>
+        <ul>
+          <li>Persistent restlessness indoors</li>
+          <li>Difficulty winding down or sleeping</li>
+          <li>Trouble focusing on tasks at home</li>
+          <li>Increased irritability without clear cause</li>
+          <li>Low interest in unstructured play</li>
+          <li>Heightened dependence on screens</li>
+        </ul>
+      </div>
+      <div class="signs-card positive">
+        <h3>✓ Signs Nature Is Helping</h3>
+        <ul>
+          <li>Noticeably calmer after outdoor time</li>
+          <li>More creative and imaginative play</li>
+          <li>Better sleep on active outdoor days</li>
+          <li>Increased curiosity and observation</li>
+          <li>Improved mood within 10–15 minutes outside</li>
+          <li>More willing to try new things</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- BREATHING -->
+  <div class="section fade-in" id="breathing">
+    <div class="section-header">
+      <div class="section-icon">🌿</div>
+      <div>
+        <h2>The Two Breathing Exercises</h2>
+        <p>Simple tools your child can use anytime they feel overwhelmed — from the book</p>
+      </div>
+    </div>
+    <div class="breathing-grid">
+      <div class="breathing-card">
+        <h3>🌳 Tree Breathing</h3>
+        <span class="page-ref">Pages 41–42 in the book</span>
+        <p>Stand tall and imagine you are a tree. Uses movement and slow breathing together to calm the nervous system quickly. Works great at bedtime or before anything stressful.</p>
+        <ul class="step-list">
+          <li><span class="step-num">1</span><strong>ROOT</strong> — Press feet into the ground. Feel strong and solid. Hold 3 seconds.</li>
+          <li><span class="step-num">2</span><strong>GROW</strong> — Breathe IN for 4 counts, stretching arms up like branches.</li>
+          <li><span class="step-num">3</span><strong>SWAY</strong> — Hold the breath, gently sway arms like a breeze. 2 counts.</li>
+          <li><span class="step-num">4</span><strong>SETTLE</strong> — Breathe OUT for 6 counts, slowly lower arms down.</li>
+        </ul>
+        <p style="margin-top:10px; font-size:13px; color:var(--text-light);">Repeat 3 times. Try it alongside your child — Tree Breathing works for adults too!</p>
+      </div>
+      <div class="breathing-card">
+        <h3>🍃 Leaf Breathing</h3>
+        <span class="page-ref">Pages 44–45 in the book</span>
+        <p>Trace the edge of a leaf slowly with your finger, breathing in sync with the movement. Quiet, simple, and can be done anywhere — even at a school desk or in the car.</p>
+        <ul class="step-list">
+          <li><span class="step-num">1</span>Find a real leaf — or use the leaf printed on page 45.</li>
+          <li><span class="step-num">2</span>Trace the edge slowly with one finger.</li>
+          <li><span class="step-num">3</span>Breathe <strong>IN</strong> as your finger goes up one side.</li>
+          <li><span class="step-num">4</span>Breathe <strong>OUT</strong> as your finger comes down the other side.</li>
+          <li><span class="step-num">5</span>Repeat 5 times. Notice how you feel.</li>
+        </ul>
+        <p style="margin-top:10px; font-size:13px; color:var(--text-light);">Fun fact from the book: leaves breathe through tiny holes called <em>stomata</em>. Your child and the tree are breathing together!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="section fade-in" id="tips">
+    <div class="section-header">
+      <div class="section-icon">🏡</div>
+      <div>
+        <h2>Practical Tips for Home</h2>
+        <p>No forest required — these work anywhere</p>
+      </div>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-label">📖 Read Together First</div>
+        <p>Before your child does any activity page, read the story pages aloud together. Ask "Did you know trees could really do that?" Let the wonder land before moving to the activity.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-label">🌿 Take It Outside</div>
+        <p>The Leaf Breathing page works best outdoors. Bring the book on a walk or to a park — even a city street with one tree works. Finding a real leaf makes the exercise feel special.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-label">🌳 Practice Breathing Together</div>
+        <p>Both exercises work for adults too. Doing them alongside your child models that calming your nervous system is for everyone — not just overwhelmed kids.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-label">🌱 Start Something Growing</div>
+        <p>Even one pot on a windowsill counts. Let your child plant a seed and water it daily — just like Mia did when she came back to the city. Watching something grow builds the same sense of care the book nurtures.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-label">🐛 Follow Their Curiosity</div>
+        <p>If your child stops to look at a bug, a mushroom, or a bird — stop with them. Resisting the urge to hurry past is one of the most powerful nature-connection habits you can build together.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-label">🏅 Display the Certificate</div>
+        <p>The Forest Whisperer Certificate at the back is meant to be cut out and kept. Displaying it somewhere visible signals to your child that this identity matters to you too.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONVOS -->
+  <div class="section fade-in" id="convos">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <div>
+        <h2>Conversation Starters</h2>
+        <p>For the car, dinner table, or bedtime — no nature required</p>
+      </div>
+    </div>
+    <div class="convo-grid">
+      <div class="convo-item">If you were a tree, what kind would you be and why?</div>
+      <div class="convo-item">Who is the "Mother Tree" in our family — someone who shares and takes care of everyone?</div>
+      <div class="convo-item">Where do you feel most calm? What does that place look like?</div>
+      <div class="convo-item">Do you think trees really have feelings? Why or why not?</div>
+      <div class="convo-item">What's one thing you'd protect if you could protect anything in nature?</div>
+      <div class="convo-item">If the Mother Tree could talk to you, what do you think she'd say?</div>
+      <div class="convo-item">When you feel worried or stuck, what helps your body calm down?</div>
+      <div class="convo-item">What's one small thing we could do to help nature near where we live?</div>
+      <div class="convo-item">Leaves breathe through tiny holes called stomata — what else do you think trees do that scientists haven't discovered yet?</div>
+      <div class="convo-item">Mia planted a garden when she got home. If you could plant anything, what would it be?</div>
+    </div>
+  </div>
+
+  <!-- PAGE GUIDE -->
+  <div class="section fade-in" id="pages">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div>
+        <h2>What's on Each Page</h2>
+        <p>A parent's guide — what your child is learning and how to support it</p>
+      </div>
+    </div>
+    <div class="ref-table-wrap">
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Pages</th>
+            <th>What's There</th>
+            <th>What Your Child Is Learning</th>
+            <th>How to Support It</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1–4</td>
+            <td>Cover + This Book Belongs To + Hi I'm Mia</td>
+            <td>Ownership and connection to Mia's story</td>
+            <td>Let your child fill in their name and draw their portrait — this makes the book truly theirs</td>
+          </tr>
+          <tr>
+            <td>5–11</td>
+            <td>City life + How Mia felt + Hard day in the park</td>
+            <td>Naming emotions; that nature helps even on the hardest days</td>
+            <td>Ask about the "hard feeling" page — listen without fixing. Share a time being outside helped you too</td>
+          </tr>
+          <tr>
+            <td>12–17</td>
+            <td>Nature School + Nervous system diagram + Before & After activity</td>
+            <td>How nature physically changes the body; the difference between stressed and calm</td>
+            <td>Do the Before & After activity (page 16) after your next outdoor trip together</td>
+          </tr>
+          <tr>
+            <td>18–29</td>
+            <td>Ms. Rowan + Wood Wide Web + Underground Party + Draw Your Web + Mother Tree + Trees Warn</td>
+            <td>Real forest science; community and interdependence; the mycorrhizal network</td>
+            <td>Look up a local tree species together. Find mushrooms on a walk — they're part of the real Wood Wide Web!</td>
+          </tr>
+          <tr>
+            <td>30–31</td>
+            <td>Mia breathes under the Mother Tree</td>
+            <td>Emotional regulation; the forest as a place of peace and belonging</td>
+            <td>Try sitting quietly under a tree together — even just 5 minutes counts</td>
+          </tr>
+          <tr>
+            <td>32–37</td>
+            <td>Forests Need Friends + Think About It + Every Child Has Rights</td>
+            <td>Global awareness; children's rights; personal agency and environmental stewardship</td>
+            <td>Talk about your family's small environmental choices without guilt or pressure</td>
+          </tr>
+          <tr>
+            <td>38–39</td>
+            <td>Mia's city garden</td>
+            <td>Hope; that small actions create real change; coming full circle from city to garden</td>
+            <td>Start something growing together — a seed, a plant, even a herb on the windowsill</td>
+          </tr>
+          <tr>
+            <td>40–45</td>
+            <td>Tree Breathing + What Nature Does to Your Brain + Leaf Breathing</td>
+            <td>Two practical calming tools; the science of nature and the brain</td>
+            <td>Practice both exercises together and make them part of your regular routine</td>
+          </tr>
+          <tr>
+            <td>46</td>
+            <td>What Can We Protect activity</td>
+            <td>Personal agency; specific actions a child can take right now</td>
+            <td>Help make one of their "I can" ideas actually happen this week</td>
+          </tr>
+          <tr>
+            <td>47</td>
+            <td>Forest Whisperer Certificate</td>
+            <td>Celebration; identity as someone who cares for nature</td>
+            <td>Cut it out and display it — the fridge, their bedroom door, anywhere they'll see it daily</td>
+          </tr>
+          <tr>
+            <td>49–50</td>
+            <td>Forest Words to Know + A Note for Grown-Ups</td>
+            <td>Vocabulary reinforcement; the science words from the book</td>
+            <td>Quiz each other on the glossary words — make it a game. Fungi = FUN-guy! Mycelium = my-SEE-lee-um!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- GLOSSARY -->
+  <div class="section fade-in" id="glossary">
+    <div class="section-header">
+      <div class="section-icon">📖</div>
+      <div>
+        <h2>Forest Words to Know</h2>
+        <p>Every vocabulary word from the book — with pronunciations and plain-English definitions</p>
+      </div>
+    </div>
+    <div class="glossary-grid">
+      <div class="glossary-card">
+        <div class="word">Fungi</div>
+        <div class="pronounce">Say it: FUN-guy</div>
+        <p>Tiny living things that grow in soil — like mushrooms! In the forest, fungi grow as thread-like networks between tree roots, helping trees communicate and share food underground.</p>
+      </div>
+      <div class="glossary-card">
+        <div class="word">Mycelium</div>
+        <div class="pronounce">Say it: my-SEE-lee-um</div>
+        <p>The thread-like roots that fungi use to connect trees underground. Mycelium is what makes the Wood Wide Web possible — it carries water, nutrients, and warning signals between trees.</p>
+      </div>
+      <div class="glossary-card">
+        <div class="word">Nervous System</div>
+        <div class="pronounce">No special pronunciation!</div>
+        <p>The part of your body that tells you if you feel safe, scared, or calm. Nature helps calm the nervous system — which is why the breathing exercises in the book are so effective.</p>
+      </div>
+      <div class="glossary-card">
+        <div class="word">Nutrients</div>
+        <div class="pronounce">Say it: NEW-tree-ents</div>
+        <p>The good stuff in food that helps living things grow strong. Trees share nutrients through the Wood Wide Web — especially Mother Trees sharing with baby trees that can't reach enough sunlight.</p>
+      </div>
+      <div class="glossary-card">
+        <div class="word">Wood Wide Web</div>
+        <div class="pronounce">No special pronunciation!</div>
+        <p>The nickname scientists gave to the underground network of fungi and roots connecting trees in a forest. Like the internet — but for trees. First described by Dr. Suzanne Simard.</p>
+      </div>
+      <div class="glossary-card">
+        <div class="word">Stomata</div>
+        <div class="pronounce">Say it: stoh-MAH-tah</div>
+        <p>Tiny holes in leaves that let plants breathe — taking in carbon dioxide and releasing oxygen. During Leaf Breathing, your child and the leaf are breathing together through stomata!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESOURCES -->
+  <div class="section fade-in" id="resources">
+    <div class="section-header">
+      <div class="section-icon">⭐</div>
+      <div>
+        <h2>Keep Exploring</h2>
+        <p>Books, videos, and free apps to go deeper into the forest</p>
+      </div>
+    </div>
+    <div class="resources-grid">
+      <div class="resource-card">
+        <span class="res-tag book">📗 Book</span>
+        <h3>Finding the Mother Tree</h3>
+        <p>Dr. Suzanne Simard's memoir — the real scientist behind the Wood Wide Web and the inspiration for Ms. Rowan. Her research proved that trees share, communicate, and care for each other.</p>
+        <a href="https://www.goodreads.com/book/show/55918219-finding-the-mother-tree" target="_blank">Find on Goodreads →</a>
+      </div>
+      <div class="resource-card">
+        <span class="res-tag book">📗 Book</span>
+        <h3>Last Child in the Woods</h3>
+        <p>Richard Louv's landmark book that coined "nature deficit disorder." Essential reading for any parent who wants to understand why outdoor time matters so deeply for children's development.</p>
+        <a href="https://richardlouv.com/books/last-child/" target="_blank">Learn more →</a>
+      </div>
+      <div class="resource-card">
+        <span class="res-tag video">▶ Video</span>
+        <h3>How Trees Talk — Suzanne Simard</h3>
+        <p>The real Ms. Rowan explaining the Wood Wide Web in her own words. Dr. Simard's TED Talk is captivating — appropriate for curious older children (8+) to watch alongside you.</p>
+        <a href="https://www.ted.com/talks/suzanne_simard_how_trees_talk_to_each_other" target="_blank">Watch on TED →</a>
+      </div>
+      <div class="resource-card">
+        <span class="res-tag video">▶ Video</span>
+        <h3>Fantastic Fungi (Documentary)</h3>
+        <p>A visually stunning documentary about mycelium networks — the underground world Mia discovers. Available on Netflix. The underground footage will make the book's pages come alive for older children (8+).</p>
+        <a href="https://www.fantasticfungi.com" target="_blank">Learn more →</a>
+      </div>
+      <div class="resource-card">
+        <span class="res-tag activity">🌿 Free App</span>
+        <h3>iNaturalist</h3>
+        <p>Photograph plants, insects, and animals and have them identified by a global community of naturalists. Turns any walk into a discovery adventure — perfect for the scavenger hunt spirit of Mia's book.</p>
+        <a href="https://www.inaturalist.org" target="_blank">Visit iNaturalist →</a>
+      </div>
+      <div class="resource-card">
+        <span class="res-tag activity">🌿 Free App</span>
+        <h3>AllTrails</h3>
+        <p>Find family-friendly walking trails near you. The easiest way to find your child's own "sit spot" — a real outdoor place they can return to, just like Mia returns to the Mother Tree.</p>
+        <a href="https://www.alltrails.com" target="_blank">Find trails near you →</a>
+      </div>
+      <div class="resource-card">
+        <span class="res-tag research">🔬 Research Hub</span>
+        <h3>Children & Nature Network</h3>
+        <p>A comprehensive research library on nature and child development. For parents or educators who want to read the original science behind the book's themes.</p>
+        <a href="https://www.childrenandnature.org/research/" target="_blank">Read the research →</a>
+      </div>
+      <div class="resource-card">
+        <span class="res-tag activity">🌿 Find a School</span>
+        <h3>Forest School Association</h3>
+        <p>Find a real nature school or forest school program near you. Many offer family days and weekend sessions — the real-life version of what Mia experiences in the book.</p>
+        <a href="https://www.forestschoolassociation.org" target="_blank">Find a forest school →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-logo">🌿</span>
+  <h3>Mia and the Talking Trees</h3>
+  <p>Created by students studying art, environmental science, and child psychology — because every child deserves to know that nature is not a luxury. It belongs to them. Thank you for sharing the forest with your child.</p>
+  <div class="refs">
+    <strong style="color:rgba(255,255,255,0.7); display:block; margin-bottom:6px;">References</strong>
+    Simard, S. (2021). <em>Finding the Mother Tree.</em> Knopf. &nbsp;·&nbsp;
+    Louv, R. (2005). <em>Last Child in the Woods.</em> Algonquin Books. &nbsp;·&nbsp;
+    Faber Taylor, A. & Kuo, F. (2009). Children with ADHD benefit from time in nature. <em>American Journal of Public Health.</em> &nbsp;·&nbsp;
+    Chawla, L. (2015). Benefits of Nature Contact for Children. <em>Journal of Planning Literature.</em> &nbsp;·&nbsp;
+    Ulrich, R. et al. (1991). Stress recovery during exposure to natural environments. <em>Journal of Environmental Psychology.</em>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
